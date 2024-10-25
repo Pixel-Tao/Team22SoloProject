@@ -3,33 +3,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health;
-    [Range(0, 500)] public int maxHealth;
     public Transform rightHandSlot;
-
-    public event Action<int> HealthChangedEvent;
+    public ConditionUI condition;
 
     private PlayerMovement movement;
+
+    public ConditionSlot health => condition.health;
+    public ConditionSlot stamina => condition.stamina;
 
     private void Awake()
     {
         PlayerManager.Instance.SetPlayer(this);
         movement = GetComponent<PlayerMovement>();
-        health = maxHealth / 2;
     }
 
-    public void OnDamaged(int damage)
+    private void Update()
     {
-        health -= damage;
-        health = Mathf.Clamp(health, 0, maxHealth);
-        HealthChangedEvent?.Invoke(health);
+        condition.stamina.Add(condition.stamina.passiveValue * Time.deltaTime);
     }
 
-    public void OnHeal(int heal)
+    public void Damaged(int damage)
     {
-        health += heal;
-        health = Mathf.Clamp(health, 0, maxHealth);
-        HealthChangedEvent?.Invoke(health);
+        condition.health.Subtract(damage);
+    }
+
+    public void Heal(int heal)
+    {
+        condition.health.Add(heal);
+    }
+
+    public void UseStamina(int cost)
+    {
+        condition.stamina.Subtract(cost);
     }
 
     public void SuperJump()

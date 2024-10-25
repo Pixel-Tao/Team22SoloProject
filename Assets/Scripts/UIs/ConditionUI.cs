@@ -6,18 +6,11 @@ using UnityEngine.UI;
 
 public class ConditionUI : MonoBehaviour
 {
-    public Image healthImage;
+    public ConditionSlot health;
+    public ConditionSlot stamina;
 
     private void Start()
     {
-        PlayerManager.Instance.Player.HealthChangedEvent += HealthChanged;
-        HealthChanged(PlayerManager.Instance.Player.health);
+        PlayerManager.Instance.Player.condition = this;
     }
-
-    private void HealthChanged(int value)
-    {
-        int maxHealth = PlayerManager.Instance.Player.maxHealth;
-
-        healthImage.fillAmount = (float)value / maxHealth;
-    }
-}
+ }

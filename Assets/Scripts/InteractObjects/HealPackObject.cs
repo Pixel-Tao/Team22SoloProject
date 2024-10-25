@@ -16,7 +16,7 @@ public class HealPackObject : InteractableObject
     public override void OnInteract()
     {
         PickupData pickupData = (PickupData)interactData;
-        PlayerManager.Instance.Player.OnHeal(pickupData.amount);
+        PlayerManager.Instance.Player.Heal(pickupData.amount);
         Destroy(gameObject);
     }
 

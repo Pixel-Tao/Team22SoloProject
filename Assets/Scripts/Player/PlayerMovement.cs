@@ -15,11 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isRun;
     public float fallMultiplier;
     public float maxSlopeLimit;
+    public int jumpStaminaCost;
 
     private Rigidbody rigidbody;
     private PlayerAnim anim;
     private PlayerLook look;
     private Vector3 direction;
+    private Player player;
 
     private RaycastHit slopeHit;
 
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<PlayerAnim>();
         look = GetComponent<PlayerLook>();
+        player = GetComponent<Player>();
     }
 
     private void Update()
@@ -87,8 +90,12 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded() == false)
             return;
 
+        if (player.stamina.currentValue < jumpStaminaCost)
+            return;
+
         anim.Jump();
         AddForce();
+        player.UseStamina(jumpStaminaCost);
     }
 
     public void SuperJump()
@@ -98,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.Jump();
         AddForce(2);
+        player.UseStamina(jumpStaminaCost * 2);
     }
 
     public void AddForce(int multiplier = 1)
