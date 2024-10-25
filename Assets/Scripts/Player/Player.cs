@@ -8,9 +8,12 @@ public class Player : MonoBehaviour
 
     public event Action<int> HealthChangedEvent;
 
+    private PlayerMovement movement;
+
     private void Awake()
     {
         PlayerManager.Instance.SetPlayer(this);
+        movement = GetComponent<PlayerMovement>();  
     }
 
     private void Start()
@@ -23,5 +26,10 @@ public class Player : MonoBehaviour
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
         HealthChangedEvent?.Invoke(health);
+    }
+
+    public void SuperJump()
+    {
+        movement.SuperJump();
     }
 }

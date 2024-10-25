@@ -91,9 +91,18 @@ public class PlayerMovement : MonoBehaviour
         AddForce();
     }
 
-    public void AddForce()
+    public void SuperJump()
     {
-        rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        if (IsGrounded() == false)
+            return;
+
+        anim.Jump();
+        AddForce(2);
+    }
+
+    public void AddForce(int multiplier = 1)
+    {
+        rigidbody.AddForce(Vector3.up * jumpPower * multiplier, ForceMode.Impulse);
     }
 
     private bool IsGrounded()
