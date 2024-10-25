@@ -15,7 +15,7 @@ public enum ConsumableType
     Health,
     Stamina,
 }
-
+[System.Serializable]
 public class Consumable
 {
     public ConsumableType consumableType;
@@ -27,7 +27,6 @@ public class ItemData : InteractData
 {
     public ItemType itemType;
     public Sprite icon;
-    public GameObject itemPrefab;
     public bool stackable;
     public int maxStack;
     public List<Consumable> consumables;

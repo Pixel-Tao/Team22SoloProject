@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada2af60d74ac0b43b55ab3a455ea3d7, type: 3}
+  m_Name: HealPackData
+  m_EditorClassIdentifier: 
+  title: "\uD790\uD329"
+  description: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C \uC90C"
+  interactType: 4
+  interactPrefab: {fileID: 5330797995573880818, guid: 57aeeb6b8a5226747839c7dedea81d37, type: 3}
+  amount: 50

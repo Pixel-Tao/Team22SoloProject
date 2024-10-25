@@ -11,6 +11,7 @@ public class ConditionUI : MonoBehaviour
     private void Start()
     {
         PlayerManager.Instance.Player.HealthChangedEvent += HealthChanged;
+        HealthChanged(PlayerManager.Instance.Player.health);
     }
 
     private void HealthChanged(int value)

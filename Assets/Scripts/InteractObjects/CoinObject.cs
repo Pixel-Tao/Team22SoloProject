@@ -46,7 +46,7 @@ public class CoinObject : InteractableObject
 
     public override void OnInteract()
     {
-        CoinData resourceData = (CoinData)interactData;
+        PickupData resourceData = (PickupData)interactData;
         PlayerManager.Instance.AddCoin(resourceData.amount);
         Destroy(gameObject);
     }

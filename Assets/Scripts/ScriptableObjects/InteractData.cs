@@ -7,7 +7,7 @@ public enum InteractType
     Item,
     Box,
     Button,
-    Coin,
+    Pickup,
 }
 
 [CreateAssetMenu(fileName = "InteractData", menuName = "Datas/InteractData")]
