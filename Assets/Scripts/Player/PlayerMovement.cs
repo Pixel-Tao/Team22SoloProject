@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isGrounded = IsGrounded();
         bool isOnSlope = IsOnSlope();
-        Debug.Log(isOnSlope);
         Vector3 velocity = transform.forward * direction.y + transform.right * direction.x;
         Vector3 gravity = Vector3.zero;
         if (isOnSlope && isGrounded)
@@ -124,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out slopeHit, 0.15f, groundLayerMask))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            Debug.Log(angle);
             return angle != 0f && angle < maxSlopeLimit;
         }
 

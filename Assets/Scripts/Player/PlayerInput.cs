@@ -7,10 +7,12 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private PlayerMovement movement;
+    private Interaction interaction;
 
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
+        interaction = GetComponent<Interaction>();
     }
 
     private void Start()
@@ -43,6 +45,15 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             movement.RunToggle();
+        }
+    }
+
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            interaction?.Interact();
         }
     }
 }
