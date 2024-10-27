@@ -53,7 +53,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            interaction?.Interact();
+            interaction.Interact();
         }
     }
 }

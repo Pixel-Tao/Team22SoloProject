@@ -37,9 +37,9 @@ public class BoxObject : InteractableObject
             GameObject itemObject = Instantiate(item.interactPrefab, boxBase.position, Quaternion.identity);
             Vector3 randDirection = new Vector3(Random.Range(-1f, 1f), 8, Random.Range(-1f, 1f));
             if (item.interactType == InteractType.Pickup)
-                itemObject.GetComponent<CoinObject>()?.Shoot(randDirection);
+                itemObject.GetComponent<CoinObject>().Shoot(randDirection);
             else if(item.interactType == InteractType.Item)
-                itemObject.GetComponent<ItemObject>()?.Shoot(randDirection);
+                itemObject.GetComponent<ItemObject>().Shoot(randDirection);
         }
     }
 }

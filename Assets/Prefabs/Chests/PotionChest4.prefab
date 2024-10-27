@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1302519966257467357}
   - component: {fileID: 1744813831537720137}
   m_Layer: 7
-  m_Name: PotionChest
+  m_Name: PotionChest4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c010f1638d48f74ab57e4db8a2b7b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactData: {fileID: 11400000, guid: 6aa3bc20c22c01b4f9b29b62c0614eaf, type: 2}
+  interactData: {fileID: 11400000, guid: 4aad947b7bae9be42a10fdf880da922c, type: 2}
   boxBase: {fileID: 2142008893001803652}
 --- !u!65 &1744813831537720137
 BoxCollider:

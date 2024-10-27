@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43bf977c333902149b9f668d4bbeef69, type: 3}
-  m_Name: HealthPotionData
+  m_Name: HealthRegenBuffPotionData
   m_EditorClassIdentifier: 
-  title: "\uCCB4\uB825 \uD68C\uBCF5 \uBB3C\uC57D"
-  description: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD568"
+  title: "\uCC44\uB825\uC7AC\uC0DD \uD3EC\uC158"
+  description: "\uCCB4\uB825\uC744 \uC9C0\uC18D\uC801\uC73C\uB85C \uD68C\uBCF5\uD568"
   interactType: 1
-  interactPrefab: {fileID: 7737366921764412797, guid: 7c818d0b8ed215c4e93630d75b5f1a77, type: 3}
+  interactPrefab: {fileID: 7737366921764412797, guid: da0ca2a2255cd374ab409ac4a0c91508, type: 3}
   itemType: 1
-  icon: {fileID: 1479945449, guid: b6b71165e99523b4094a1fae9703645c, type: 3}
+  icon: {fileID: -1696728689, guid: b6b71165e99523b4094a1fae9703645c, type: 3}
   stackable: 1
   maxStack: 5
   consumables:
-  - consumableType: 0
-    amount: 50
+  - consumableType: 3
+    amount: 10
   equipPrefab: {fileID: 0}

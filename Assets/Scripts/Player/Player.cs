@@ -5,11 +5,16 @@ public class Player : MonoBehaviour
 {
     public Transform rightHandSlot;
     public ConditionUI condition;
+    public BuffUI buff;
 
     private PlayerMovement movement;
 
     public ConditionSlot health => condition.health;
     public ConditionSlot stamina => condition.stamina;
+
+    public BuffSlot healthRegenBuff => buff.healthRegenBuff;
+    public BuffSlot staminaRegenBuff => buff.staminaRegenBuff;
+    public BuffSlot moveSpeedBuff => buff.moveSpeedBuff;
 
     private void Awake()
     {
@@ -19,7 +24,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        condition.stamina.Add(condition.stamina.passiveValue * Time.deltaTime);
+        if (buff.healthRegenBuff.isActiveAndEnabled)
+            condition.health.Add(healthRegenBuff.ActivatePassiveValue * Time.deltaTime);
+        if (buff.staminaRegenBuff.isActiveAndEnabled)
+            condition.stamina.Add(stamina.passiveValue + staminaRegenBuff.ActivatePassiveValue * Time.deltaTime);
+        else
+            condition.stamina.Add(stamina.passiveValue * Time.deltaTime);
     }
 
     public void Damaged(int damage)
@@ -35,6 +45,23 @@ public class Player : MonoBehaviour
     public void UseStamina(int cost)
     {
         condition.stamina.Subtract(cost);
+    }
+
+    public void Buff(ConsumableType type, float duration)
+    {
+        switch (type)
+        {
+            case ConsumableType.HealthRegen:
+                healthRegenBuff.Buff(duration);
+                break;
+            case ConsumableType.StaminaRegen:
+                staminaRegenBuff.Buff(duration);
+                break;
+            case ConsumableType.MoveSpeed:
+                moveSpeedBuff.Buff(duration);
+                break;
+        }
+
     }
 
     public void SuperJump()

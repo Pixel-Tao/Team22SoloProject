@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cbc2cedc8530854aa98df17e9ceaa4f, type: 3}
-  m_Name: PotionBoxData
+  m_Name: MoveSpeedPotionBoxData
   m_EditorClassIdentifier: 
   title: "\uC0C1\uC790"
   description: "\uBB34\uC5B8\uAC00 \uB4E4\uC5B4\uC788\uB294 \uC0C1\uC790"
   interactType: 2
-  interactPrefab: {fileID: 3742714534761335811, guid: dad0d0410f1dc124ea049862a5502b41, type: 3}
+  interactPrefab: {fileID: 3742714534761335811, guid: 25fd0bcf8b924a24bb6f574dd69163b9, type: 3}
   items:
-  - {fileID: 11400000, guid: 0c4f031b6a02c1843a0b299ff1913d71, type: 2}
-  - {fileID: 11400000, guid: 0c4f031b6a02c1843a0b299ff1913d71, type: 2}
-  - {fileID: 11400000, guid: 0c4f031b6a02c1843a0b299ff1913d71, type: 2}
   - {fileID: 11400000, guid: 1b62ce81b4f916a439616bade1c85220, type: 2}
   - {fileID: 11400000, guid: 1b62ce81b4f916a439616bade1c85220, type: 2}
+  - {fileID: 11400000, guid: cf30df93faf04ef4fbba6c8afd616f9d, type: 2}
+  - {fileID: 11400000, guid: cf30df93faf04ef4fbba6c8afd616f9d, type: 2}
+  - {fileID: 11400000, guid: cf30df93faf04ef4fbba6c8afd616f9d, type: 2}

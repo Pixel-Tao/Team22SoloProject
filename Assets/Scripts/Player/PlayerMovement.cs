@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxSlopeLimit;
     public int jumpStaminaCost;
 
+    public float currentSpeed => (isRun ? runSpeed : walkSpeed) + player.moveSpeedBuff.ActivatePassiveValue;
+
     private Rigidbody rigidbody;
     private PlayerAnim anim;
     private PlayerLook look;
@@ -51,14 +53,14 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity = Vector3.ProjectOnPlane(velocity, slopeHit.normal).normalized;
             rigidbody.useGravity = false;
-            velocity = velocity * (isRun ? runSpeed : walkSpeed);
+            velocity = velocity * currentSpeed;
             velocity += gravity;
         }
         else
         {
             rigidbody.useGravity = true;
 
-            velocity = velocity * (isRun ? runSpeed : walkSpeed);
+            velocity = velocity * currentSpeed;
             if (direction.y < 0)
                 velocity = velocity * 0.5f;
 

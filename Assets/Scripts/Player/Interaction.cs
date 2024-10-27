@@ -38,7 +38,7 @@ public class Interaction : MonoBehaviour
         Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
         {
-            if (currentGameObject?.gameObject != hit.collider.gameObject)
+            if (currentGameObject == null || currentGameObject.gameObject != hit.collider.gameObject)
             {
                 currentGameObject = hit.collider.gameObject;
                 currentInteractableObject = currentGameObject.GetComponent<InteractableObject>();
@@ -71,7 +71,7 @@ public class Interaction : MonoBehaviour
     {
         if (currentGameObject)
         {
-            currentInteractableObject?.OnInteract();
+            currentInteractableObject.OnInteract();
             currentInteractableObject = null;
             currentGameObject = null;
             SetPromptText();
