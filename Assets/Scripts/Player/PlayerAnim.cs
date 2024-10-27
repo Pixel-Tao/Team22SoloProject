@@ -7,11 +7,13 @@ public class PlayerAnim : MonoBehaviour
 {
     private Animator animator;
     private PlayerMovement movement;
+    private PlayerAttack attack;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<PlayerMovement>();
+        attack = GetComponent<PlayerAttack>();
     }
 
     public void Move(Vector2 moveVector)
@@ -30,9 +32,14 @@ public class PlayerAnim : MonoBehaviour
         animator.SetTrigger("Jump");
     }
 
-    public void OnJumpEvent()
+    public void Attack()
     {
-        //movement.AddForce();
+        animator.SetTrigger("Attack");
+    }
+
+    public void OnAttackEvent()
+    {
+        attack.OnAttacked();
     }
 
     public void Ground(bool isGrounded)

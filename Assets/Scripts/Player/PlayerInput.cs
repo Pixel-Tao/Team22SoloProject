@@ -8,16 +8,30 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerMovement movement;
     private Interaction interaction;
+    private PlayerAttack attack;
+    private Player player;
+
+    private bool isAttackKeyDown = false;
 
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
         interaction = GetComponent<Interaction>();
+        attack = GetComponent<PlayerAttack>();
+        player = GetComponent<Player>();
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (isAttackKeyDown)
+        {
+            attack.Attack();
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,6 +68,28 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             interaction.Interact();
+        }
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            PlayerManager.Instance.Player.inventory.Toggle();
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (player.inventory.isOpen) return;
+
+            isAttackKeyDown = true;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            isAttackKeyDown = false;
         }
     }
 }

@@ -21,7 +21,6 @@ public class BoxObject : InteractableObject
 
     public override void OnInteract()
     {
-        Debug.Log("BoxObject OnInteract");
         animator.SetBool("IsOpen", true);
         boxCollider.enabled = false;
         DropItem();

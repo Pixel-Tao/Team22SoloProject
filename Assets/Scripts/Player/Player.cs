@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,6 +5,8 @@ public class Player : MonoBehaviour
     public Transform rightHandSlot;
     public ConditionUI condition;
     public BuffUI buff;
+    public InventoryUI inventory;
+    public Equip equip;
 
     private PlayerMovement movement;
 
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
         if (buff.healthRegenBuff.isActiveAndEnabled)
             condition.health.Add(healthRegenBuff.ActivatePassiveValue * Time.deltaTime);
         if (buff.staminaRegenBuff.isActiveAndEnabled)
-            condition.stamina.Add(stamina.passiveValue + staminaRegenBuff.ActivatePassiveValue * Time.deltaTime);
+            condition.stamina.Add((stamina.passiveValue + staminaRegenBuff.ActivatePassiveValue) * Time.deltaTime);
         else
             condition.stamina.Add(stamina.passiveValue * Time.deltaTime);
     }
@@ -45,6 +46,11 @@ public class Player : MonoBehaviour
     public void UseStamina(int cost)
     {
         condition.stamina.Subtract(cost);
+    }
+
+    public bool CanUseStamina(int cost)
+    {
+        return condition.stamina.currentValue >= cost;
     }
 
     public void Buff(ConsumableType type, float duration)
@@ -67,5 +73,32 @@ public class Player : MonoBehaviour
     public void SuperJump()
     {
         movement.SuperJump();
+    }
+
+    public void Equip(ItemData itemData)
+    {
+        GameObject go = Instantiate(itemData.equipPrefab, rightHandSlot);
+        go.transform.localPosition = Vector3.zero;
+        equip = go.GetComponent<Equip>();
+    }
+
+    public void UnEquip()
+    {
+        equip = null;
+        foreach (Transform weapon in rightHandSlot)
+        {
+            Destroy(weapon.gameObject);
+        }
+
+    }
+
+    public void DropItem(ItemData itemData)
+    {
+        Vector3 position = transform.position;
+
+        GameObject go = Instantiate(itemData.interactPrefab, position, Quaternion.identity);
+        Rigidbody rigidbody = go.GetComponent<Rigidbody>();
+        Vector3 randDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 8, UnityEngine.Random.Range(-1f, 1f));
+        rigidbody.AddForce(randDirection, ForceMode.Impulse);
     }
 }

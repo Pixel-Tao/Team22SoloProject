@@ -31,7 +31,6 @@ public class BuffSlot : MonoBehaviour
             yield return wait;
             time += this.tick;
             durationBar.fillAmount = 1 - time / duration;
-            Debug.Log(time);
         }
 
         gameObject.SetActive(false);

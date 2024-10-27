@@ -45,6 +45,8 @@ public class ItemObject : InteractableObject
 
     public override void OnInteract()
     {
+        ItemData itemData =(ItemData)interactData;
+        PlayerManager.Instance.Player.inventory.AddItem(itemData);
         Destroy(gameObject);
     }
 

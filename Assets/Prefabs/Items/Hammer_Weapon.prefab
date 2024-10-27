@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da46ba28331010a4090bfc7ff525b182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 0.5
-  attackDistance: 1
-  staminaCost: 10
   damage: 3
+  attackRate: 1
+  attackDistance: 1
+  staminaCost: 25
+  attackAngle: 30

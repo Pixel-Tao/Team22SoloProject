@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Equip : MonoBehaviour
 {
-    public float attackRate;
-    public float attackDistance;
-    public float staminaCost;
-
     public int damage;
+    [Range(0, 100)] public float attackRate;
+    [Range(0, 100)] public float attackDistance;
+    [Range(0, 100)] public int staminaCost;
+    [Range(1, 180)] public float attackAngle;
 
     // Start is called before the first frame update
     void Start()
