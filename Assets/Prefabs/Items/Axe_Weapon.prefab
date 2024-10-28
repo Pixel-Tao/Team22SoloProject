@@ -98,6 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   attackRate: 1.5
-  attackDistance: 2
+  attackDistance: 2.5
   staminaCost: 40
-  attackAngle: 45
+  attackAngle: 120
