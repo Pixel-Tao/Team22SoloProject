@@ -16,7 +16,7 @@ public class BoxObject : InteractableObject
 
     public override string GetInteractText()
     {
-        return $"{interactData.title}\n{interactData.description}";
+        return $"{interactData.title} ¿­±â\n{interactData.description}";
     }
 
     public override void OnInteract()

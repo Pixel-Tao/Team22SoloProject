@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePanel : MonoBehaviour
+public class MovePanel : MonoBehaviour, ILeverTarget
 {
     public List<Vector3> destinations;
     public float speed;
@@ -61,5 +61,15 @@ public class MovePanel : MonoBehaviour
         {
             this.player = null;
         }
+    }
+
+    public void LeverOn()
+    {
+        enabled = true;
+    }
+
+    public void LeverOff()
+    {
+        enabled = false;
     }
 }

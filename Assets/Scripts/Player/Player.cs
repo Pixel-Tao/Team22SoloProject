@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public ConditionUI condition;
     public BuffUI buff;
     public InventoryUI inventory;
+    public WarningUI warning;
     public Equip equip;
 
     private PlayerMovement movement;

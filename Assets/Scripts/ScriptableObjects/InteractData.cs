@@ -6,7 +6,7 @@ public enum InteractType
     None,
     Item,
     Box,
-    Button,
+    Lever,
     Pickup,
 }
 
