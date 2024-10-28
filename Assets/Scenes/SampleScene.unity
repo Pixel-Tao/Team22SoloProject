@@ -7103,7 +7103,7 @@ GameObject:
   - component: {fileID: 841968176}
   - component: {fileID: 841968175}
   - component: {fileID: 841968174}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7125,7 +7125,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -18409,6 +18409,7 @@ GameObject:
   - component: {fileID: 564008151388544377}
   - component: {fileID: 564008151388544378}
   - component: {fileID: 564008151388544379}
+  - component: {fileID: 564008151388544380}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -18707,6 +18708,28 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1536
+--- !u!114 &564008151388544380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564008151388544368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa0ed3f4c0bd764ba3f40e885d4f1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  checkRate: 0.2
+  currentGameObject: {fileID: 0}
+  isHang: 0
+  wallStickyForce: 50
+  wallClimbForce: 5
+  wallJumpForce: 100
 --- !u!1001 &594764875289902143
 PrefabInstance:
   m_ObjectHideFlags: 0

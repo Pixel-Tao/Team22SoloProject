@@ -24,8 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private PlayerLook look;
     private Vector3 direction;
     private Player player;
-
+    private PlayerHang hang;
     private RaycastHit slopeHit;
+
 
     private void Awake()
     {
@@ -33,17 +34,30 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<PlayerAnim>();
         look = GetComponent<PlayerLook>();
         player = GetComponent<Player>();
+        hang = GetComponent<PlayerHang>();
     }
 
     private void Update()
     {
-        if (direction != Vector3.zero)
+        if (direction != Vector3.zero && !hang.isHang)
         {
             look.Rotate();
         }
     }
 
     private void FixedUpdate()
+    {
+        if (hang.isHang) return;
+        GroundMovement();
+    }
+
+    public void Move(Vector2 dir)
+    {
+        if (hang.isHang) hang.WallClimb(dir);
+        direction = dir.normalized;
+    }
+
+    private void GroundMovement()
     {
         bool isGrounded = IsGrounded();
         bool isOnSlope = IsOnSlope();
@@ -76,11 +90,6 @@ public class PlayerMovement : MonoBehaviour
         anim.Ground(isGrounded);
     }
 
-    public void Move(Vector2 dir)
-    {
-        direction = dir.normalized;
-    }
-
     public void RunToggle()
     {
         isRun = !isRun;
@@ -89,6 +98,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
+        if (hang.isHang)
+        {
+            hang.Jump();
+            return;
+        }
+
         if (IsGrounded() == false)
             return;
 
@@ -148,18 +163,4 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void OnDrawGizmos()
-    {
-        Ray[] ray = new Ray[4]
-      {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
-      };
-        for (int i = 0; i < ray.Length; i++)
-        {
-            Gizmos.DrawRay(ray[i].origin, ray[i].direction * 0.2f);
-        }
-    }
 }

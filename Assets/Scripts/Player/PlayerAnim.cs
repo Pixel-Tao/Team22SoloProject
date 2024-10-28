@@ -37,6 +37,11 @@ public class PlayerAnim : MonoBehaviour
         animator.SetTrigger("Attack");
     }
 
+    public void Interact()
+    {
+        animator.SetTrigger("Interact");
+    }
+
     public void OnAttackEvent()
     {
         attack.OnAttacked();

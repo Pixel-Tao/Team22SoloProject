@@ -16,11 +16,13 @@ public class Interaction : MonoBehaviour
     private float lastCheckTime;
 
     private Camera camera;
+    private PlayerAnim anim;
 
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main;
+        anim = GetComponent<PlayerAnim>();
     }
 
     // Update is called once per frame
@@ -75,6 +77,8 @@ public class Interaction : MonoBehaviour
             currentInteractableObject = null;
             currentGameObject = null;
             SetPromptText();
+
+            anim.Interact();
         }
     }
 }
