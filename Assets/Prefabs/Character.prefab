@@ -1590,7 +1590,19 @@ MonoBehaviour:
     m_ActionId: 5a2faa46-57a4-49a6-98bb-fb255c80f381
     m_ActionName: Player/Run[/Keyboard/r]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7378601597538478301}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 89a3c00a-eb3b-4695-911a-4cf16e361972
     m_ActionName: Player/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1684,7 +1696,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edb92940c89fa2449dce55c40ff0c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSmoothTime: 0
+  rotationSmoothTime: 0.1
+  lookSensitivity: 0.5
+  maxXLook: 70
+  minXLook: -70
+  currentZoomValue: -6
   playerCameraRoot: {fileID: 642227475819264059}
 --- !u!136 &689525431461333572
 CapsuleCollider:
@@ -1784,7 +1800,6 @@ MonoBehaviour:
   checkRate: 0.2
   currentGameObject: {fileID: 0}
   isHang: 0
-  wallStickyForce: 50
   wallClimbForce: 5
   wallJumpForce: 100
 --- !u!1 &9077809885363272911

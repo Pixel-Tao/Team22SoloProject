@@ -9,7 +9,6 @@ public class PlayerHang : MonoBehaviour
     public bool isHang;
     private float lastCheckTime;
 
-    public float wallStickyForce;
     public float wallClimbForce;
     public float wallJumpForce;
 
@@ -35,14 +34,16 @@ public class PlayerHang : MonoBehaviour
             CheckHang();
             lastCheckTime = Time.time;
         }
+
+        Climb();
     }
 
-    private void FixedUpdate()
+    private void Climb()
     {
         if (isHang)
         {
-            Vector3 velocity = transform.up * direction.y + transform.right * direction.x;
-            rigidbody.velocity = velocity * wallClimbForce;
+            Vector3 movePosition = transform.up * direction.y + transform.right * direction.x;
+            rigidbody.velocity = movePosition * wallClimbForce;
         }
     }
 
@@ -54,7 +55,6 @@ public class PlayerHang : MonoBehaviour
             if (hit.collider.gameObject != currentGameObject)
             {
                 currentGameObject = hit.collider.gameObject;
-                isHang = true;
                 StartWallHang();
             }
         }
@@ -63,7 +63,6 @@ public class PlayerHang : MonoBehaviour
             if (currentGameObject != null)
             {
                 currentGameObject = null;
-                isHang = false;
                 StopWallHang();
             }
         }
@@ -73,13 +72,13 @@ public class PlayerHang : MonoBehaviour
     {
         rigidbody.useGravity = false;
         rigidbody.velocity = Vector3.zero;
-
-        rigidbody.AddForce(-hit.normal * wallStickyForce, ForceMode.Impulse);
+        isHang = true;
     }
 
     private void StopWallHang()
     {
         rigidbody.useGravity = true;
+        isHang = false;
     }
 
     public void WallClimb(Vector3 direction)

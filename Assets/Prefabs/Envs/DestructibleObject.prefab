@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  flashTime: 0.5
+  flashColor: {r: 0.764151, g: 0.13336597, b: 0.13336597, a: 0.69411767}
 --- !u!1001 &1154128671474890068
 PrefabInstance:
   m_ObjectHideFlags: 0

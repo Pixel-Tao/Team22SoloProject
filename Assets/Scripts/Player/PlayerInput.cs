@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerLook look;
 
     private bool isAttackKeyDown = false;
+    private Vector2 moveDirection;
 
     private void Awake()
     {
@@ -34,17 +35,18 @@ public class PlayerInput : MonoBehaviour
         {
             attack.Attack();
         }
+        movement.Move(moveDirection);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            movement.Move(context.ReadValue<Vector2>());
+            moveDirection = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            movement.Move(Vector2.zero);
+            moveDirection = Vector2.zero;
         }
     }
 
@@ -97,7 +99,13 @@ public class PlayerInput : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        if (player.inventory.isOpen) return;
-        look.Look(context.ReadValue<Vector2>());
+        if (player.inventory.isOpen)
+        {
+            look.Look(Vector2.zero);
+        }
+        else
+        {
+            look.Look(context.ReadValue<Vector2>());
+        }
     }
 }

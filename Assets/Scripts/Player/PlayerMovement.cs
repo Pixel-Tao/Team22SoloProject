@@ -46,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
             look.Rotate();
         }
 
-        if (transform.position.y < -10)
+        if (transform.position.y < -10
+            || transform.position.x < -50 || transform.position.x > 80
+            || transform.position.z > 200 || transform.position.z < -10)
         {
             player.Die();
         }
@@ -72,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     public void Move(Vector2 dir)
     {
         if (hang.isHang) hang.WallClimb(dir);
-        direction = dir.normalized;
+        else direction = dir.normalized;
     }
 
     private void GroundMovement()
