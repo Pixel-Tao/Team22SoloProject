@@ -75,7 +75,6 @@ public class PlayerHang : MonoBehaviour
         rigidbody.velocity = Vector3.zero;
 
         rigidbody.AddForce(-hit.normal * wallStickyForce, ForceMode.Impulse);
-        Debug.Log("벽에 매달림");
     }
 
     private void StopWallHang()
@@ -86,8 +85,6 @@ public class PlayerHang : MonoBehaviour
     public void WallClimb(Vector3 direction)
     {
         this.direction = direction;
-
-        Debug.Log("벽타고 이동");
     }
 
     public void Jump()
