@@ -53,7 +53,7 @@ public class CoinObject : InteractableObject
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Player player))
+        if (other.gameObject.TryGetComponent(out PlayerCondition player))
         {
             OnInteract();
         }

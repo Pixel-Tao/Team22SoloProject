@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class LeverObject : InteractableObject
 {
-    public LeverHandler handler;
+    public List<LeverHandler> handler;
     public bool isOn;
 
     private Animator animator;
@@ -15,17 +16,37 @@ public class LeverObject : InteractableObject
     private void Start()
     {
         if (handler != null)
-            handler.lever = this;
-
+        {
+            foreach (var h in handler)
+            {
+                h.lever = this;
+            }
+        }
         if (isOn)
         {
-            handler?.On();
+            LeverOn();
         }
         else
         {
-            handler?.Off();
+            LeverOff();
         }
         animator.SetBool("IsOn", isOn);
+    }
+
+    private void LeverOn()
+    {
+        foreach (var h in handler)
+        {
+            h.On();
+        }
+    }
+
+    private void LeverOff()
+    {
+        foreach (var h in handler)
+        {
+            h.Off();
+        }
     }
 
     public override string GetInteractText()
@@ -38,13 +59,13 @@ public class LeverObject : InteractableObject
         if (isOn)
         {
             animator.SetBool("IsOn", false);
-            handler?.Off();
+            LeverOff();
             isOn = false;
         }
         else
         {
             animator.SetBool("IsOn", true);
-            handler?.On();
+            LeverOn();
             isOn = true;
         }
     }

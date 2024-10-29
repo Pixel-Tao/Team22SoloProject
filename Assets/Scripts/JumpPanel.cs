@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpPanel : MonoBehaviour
 {
     private bool isUsing;
-    private Player player;
+    private PlayerCondition player;
     private Animator animator;
 
     private void Awake()

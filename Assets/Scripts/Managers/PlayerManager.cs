@@ -29,8 +29,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public Player Player { get; private set; }
-    public void SetPlayer(Player player)
+    public PlayerCondition Player { get; private set; }
+    public void SetPlayer(PlayerCondition player)
     {
         Player = player;
     }

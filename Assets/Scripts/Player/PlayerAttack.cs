@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask layerMask;
 
     private PlayerAnim anim;
-    private Player player;
+    private PlayerCondition player;
 
     private bool isAttacking = false;
     private float attackTime = 0f;
@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<PlayerAnim>();
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerCondition>();
     }
 
     private void Update()

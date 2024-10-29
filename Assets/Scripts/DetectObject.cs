@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectObject : MonoBehaviour, ILeverTarget
+public class DetectObject : MoveableObject, ILeverTarget
 {
     [Range(1, 100f)] public float distance = 10f;
     [Range(0, 1f)] public float width;
@@ -12,10 +10,10 @@ public class DetectObject : MonoBehaviour, ILeverTarget
     public LayerMask layerMask;
     public Color color;
 
-    public Player player;
-
     private LineRenderer lineRenderer;
     private float lastCheckTime;
+
+    private PlayerCondition player;
 
 
     private void Awake()
@@ -23,8 +21,9 @@ public class DetectObject : MonoBehaviour, ILeverTarget
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         LeverOn();
     }
 
@@ -36,22 +35,24 @@ public class DetectObject : MonoBehaviour, ILeverTarget
             lastCheckTime = Time.time;
             CheckObject();
         }
+        if (lineRenderer.enabled)
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.forward * distance);
+        }
     }
 
     private void CheckObject()
     {
-        if(lineRenderer.enabled)
+        if (!lineRenderer.enabled) return;
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
         {
-            Ray ray = new Ray(transform.position, transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
+            if (hit.collider.gameObject.TryGetComponent(out player))
             {
-                if (hit.collider.gameObject.TryGetComponent(out player))
-                {
-                    player.warning.Play(warningTime);
-                }
+                player.warning.Play(warningTime);
             }
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, transform.position + transform.forward * distance);
         }
     }
 

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2429326641480299187}
+  - component: {fileID: 3537563002022216964}
   - component: {fileID: 1237102273290914476}
   - component: {fileID: 1903452301757240540}
   - component: {fileID: 6687497107498791472}
-  - component: {fileID: 3537563002022216964}
   - component: {fileID: 7068683327278644673}
   m_Layer: 0
   m_Name: MovePanel
@@ -36,6 +36,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3537563002022216964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474932525984088263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8711d9653a2a8a643b2b3de44f9d48fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinations:
+  - {x: -11, y: 5, z: -1.5}
+  - {x: -16, y: 5, z: -1.5}
+  - {x: -16, y: 0, z: -1.5}
+  - {x: -11, y: 0, z: -1.5}
+  speed: 2
+  player: {fileID: 0}
 --- !u!33 &1237102273290914476
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,25 +126,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.5000003, z: 2}
   m_Center: {x: 0, y: 0.24999997, z: -0.000000059604645}
---- !u!114 &3537563002022216964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6474932525984088263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8711d9653a2a8a643b2b3de44f9d48fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinations:
-  - {x: -11, y: 5, z: -1.5}
-  - {x: -16, y: 5, z: -1.5}
-  - {x: -16, y: 0, z: -1.5}
-  - {x: -11, y: 0, z: -1.5}
-  speed: 2
-  player: {fileID: 0}
 --- !u!114 &7068683327278644673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +138,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60320978c796ba34d8ab8060cf1cb917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lever: {fileID: 0}

@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class PlayerCondition : MonoBehaviour, IDamageable
 {
     public GameObject generalUIPrefab;
     public GameObject inventoryUIPrefab;
+    public GameObject endUIPrefab;
 
     public Transform rightHandSlot;
     public ConditionUI condition;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour, IDamageable
 
         Instantiate(generalUIPrefab);
         Instantiate(inventoryUIPrefab);
+        
     }
 
     private void Update()
@@ -85,6 +87,11 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         transform.position = Vector3.zero;
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        if (rigidbody != null)
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
         condition.health.currentValue = condition.health.maxValue;
         condition.stamina.currentValue = condition.stamina.maxValue;
     }
@@ -119,6 +126,11 @@ public class Player : MonoBehaviour, IDamageable
         Rigidbody rigidbody = go.GetComponent<Rigidbody>();
         Vector3 randDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 8, UnityEngine.Random.Range(-1f, 1f));
         rigidbody.AddForce(randDirection, ForceMode.Impulse);
+    }
+
+    public void GameEnd()
+    {
+        Instantiate(endUIPrefab);
     }
 
 }

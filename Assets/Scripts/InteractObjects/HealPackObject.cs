@@ -22,7 +22,7 @@ public class HealPackObject : InteractableObject
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Player player))
+        if (other.gameObject.TryGetComponent(out PlayerCondition player))
         {
             OnInteract();
         }

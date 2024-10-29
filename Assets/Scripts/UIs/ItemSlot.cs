@@ -90,6 +90,9 @@ public class ItemSlot : MonoBehaviour
                 case ConsumableType.StaminaRegen:
                     PlayerManager.Instance.Player.Buff(consumable.consumableType, consumable.amount);
                     break;
+                case ConsumableType.Scroll:
+                    PlayerManager.Instance.Player.GameEnd();
+                    break;
             }
         }
 

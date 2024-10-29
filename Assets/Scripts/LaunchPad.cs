@@ -14,6 +14,8 @@ public class LaunchPad : MonoBehaviour
 
     private PlayerMovement movement;
 
+    private bool isOnPad;
+
     private void Start()
     {
         timerTextLeft.text = string.Empty;
@@ -40,6 +42,7 @@ public class LaunchPad : MonoBehaviour
             timerTextLeft.text = LaunchTime.ToString("F0");
             timerTextRight.text = LaunchTime.ToString("F0");
             lastLaunchTime = Time.time;
+            isOnPad = true;
         }
     }
 
@@ -49,13 +52,23 @@ public class LaunchPad : MonoBehaviour
         {
             timerTextLeft.text = string.Empty;
             timerTextRight.text = string.Empty;
+            isOnPad = false;
         }
     }
 
     private void Launch()
     {
+        if (!isOnPad)
+        {
+            this.movement.enabled = true;
+            this.movement = null;
+            this.isOnPad = false;
+            return;
+        }
+
         Vector3 forceVector = (Vector3.up + transform.forward) * force;
         Rigidbody rigidbody = movement.GetComponent<Rigidbody>();
+        movement.GetComponent<PlayerAnim>()?.Move(forceVector);
         this.movement.isLaunching = true;
         this.movement.enabled = false;
         rigidbody.AddForce(forceVector, ForceMode.Impulse);

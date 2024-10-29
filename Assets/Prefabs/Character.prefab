@@ -1723,11 +1723,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generalUIPrefab: {fileID: 1976721822696185211, guid: 65b7f04d0277c3340b925bc99739c7a8, type: 3}
   inventoryUIPrefab: {fileID: 4307734834732799134, guid: 65f03104ca18f6e48a54e3c858de1488, type: 3}
+  endUIPrefab: {fileID: 1551139582286608398, guid: 624d7df97a3dd2a489451ca151282ee5, type: 3}
   rightHandSlot: {fileID: 1947402326542334128}
   condition: {fileID: 0}
   buff: {fileID: 0}
   inventory: {fileID: 0}
   warning: {fileID: 0}
+  damageIndicator: {fileID: 0}
   equip: {fileID: 0}
 --- !u!114 &563279002887866896
 MonoBehaviour:

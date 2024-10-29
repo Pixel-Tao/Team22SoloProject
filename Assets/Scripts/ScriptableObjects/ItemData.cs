@@ -17,6 +17,7 @@ public enum ConsumableType
     MoveSpeed,
     HealthRegen,
     StaminaRegen,
+    Scroll,
 }
 [System.Serializable]
 public class Consumable

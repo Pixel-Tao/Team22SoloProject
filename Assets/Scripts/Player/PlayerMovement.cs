@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAnim anim;
     private PlayerLook look;
     private Vector3 direction;
-    private Player player;
+    private PlayerCondition player;
     private PlayerHang hang;
     private RaycastHit slopeHit;
 
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<PlayerAnim>();
         look = GetComponent<PlayerLook>();
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerCondition>();
         hang = GetComponent<PlayerHang>();
     }
 
@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector3.zero && !hang.isHang)
         {
             look.Rotate();
+        }
+
+        if (transform.position.y < -10)
+        {
+            player.Die();
         }
     }
 
@@ -155,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < ray.Length; i++)
         {
-            if (Physics.Raycast(ray[i], 0.15f, groundLayerMask))
+            if (Physics.Raycast(ray[i], 0.2f, groundLayerMask))
             {
                 return true;
             }

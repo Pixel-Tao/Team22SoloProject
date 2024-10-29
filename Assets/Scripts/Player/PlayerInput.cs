@@ -9,7 +9,8 @@ public class PlayerInput : MonoBehaviour
     private PlayerMovement movement;
     private Interaction interaction;
     private PlayerAttack attack;
-    private Player player;
+    private PlayerCondition player;
+    private PlayerLook look;
 
     private bool isAttackKeyDown = false;
 
@@ -18,7 +19,8 @@ public class PlayerInput : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         interaction = GetComponent<Interaction>();
         attack = GetComponent<PlayerAttack>();
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerCondition>();
+        look = GetComponent<PlayerLook>();
     }
 
     private void Start()
@@ -91,5 +93,11 @@ public class PlayerInput : MonoBehaviour
         {
             isAttackKeyDown = false;
         }
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        if (player.inventory.isOpen) return;
+        look.Look(context.ReadValue<Vector2>());
     }
 }
