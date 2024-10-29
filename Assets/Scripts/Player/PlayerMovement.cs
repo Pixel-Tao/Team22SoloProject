@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxSlopeLimit;
     public int jumpStaminaCost;
 
+    public bool isLaunching;
+
     public float currentSpeed => (isRun ? runSpeed : walkSpeed) + player.moveSpeedBuff.ActivatePassiveValue;
 
     private Rigidbody rigidbody;
@@ -48,7 +50,18 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (hang.isHang) return;
-        GroundMovement();
+        if (isLaunching)
+        {
+            if (IsGrounded())
+            {
+                rigidbody.velocity = Vector3.zero;
+                isLaunching = false;
+            }
+        }
+        else
+        {
+            GroundMovement();
+        }
     }
 
     public void Move(Vector2 dir)
@@ -162,5 +175,4 @@ public class PlayerMovement : MonoBehaviour
 
         return false;
     }
-
 }

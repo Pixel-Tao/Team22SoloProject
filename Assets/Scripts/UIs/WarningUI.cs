@@ -39,7 +39,7 @@ public class WarningUI : MonoBehaviour
             if (timer > duration)
             {
                 // 피해? 아니면 함정? 무언가...
-
+                PlayerManager.Instance.Player.Die();
                 Stop();
                 return;
             }

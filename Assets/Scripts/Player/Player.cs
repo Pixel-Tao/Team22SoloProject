@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
+    public GameObject generalUIPrefab;
+    public GameObject inventoryUIPrefab;
+
     public Transform rightHandSlot;
     public ConditionUI condition;
     public BuffUI buff;
     public InventoryUI inventory;
     public WarningUI warning;
+    public DamageIndicatorUI damageIndicator;
     public Equip equip;
 
     private PlayerMovement movement;
@@ -22,6 +26,9 @@ public class Player : MonoBehaviour
     {
         PlayerManager.Instance.SetPlayer(this);
         movement = GetComponent<PlayerMovement>();
+
+        Instantiate(generalUIPrefab);
+        Instantiate(inventoryUIPrefab);
     }
 
     private void Update()
@@ -34,9 +41,13 @@ public class Player : MonoBehaviour
             condition.stamina.Add(stamina.passiveValue * Time.deltaTime);
     }
 
-    public void Damaged(int damage)
+    public void TakeDamage(int damage)
     {
         condition.health.Subtract(damage);
+        damageIndicator.Flash();
+
+        if (condition.health.currentValue <= 0)
+            Die();
     }
 
     public void Heal(int heal)
@@ -71,6 +82,13 @@ public class Player : MonoBehaviour
 
     }
 
+    public void Die()
+    {
+        transform.position = Vector3.zero;
+        condition.health.currentValue = condition.health.maxValue;
+        condition.stamina.currentValue = condition.stamina.maxValue;
+    }
+
     public void SuperJump()
     {
         movement.SuperJump();
@@ -102,4 +120,5 @@ public class Player : MonoBehaviour
         Vector3 randDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 8, UnityEngine.Random.Range(-1f, 1f));
         rigidbody.AddForce(randDirection, ForceMode.Impulse);
     }
+
 }

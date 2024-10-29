@@ -40,16 +40,19 @@ public class DetectObject : MonoBehaviour, ILeverTarget
 
     private void CheckObject()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
+        if(lineRenderer.enabled)
         {
-            if (hit.collider.gameObject.TryGetComponent(out player))
+            Ray ray = new Ray(transform.position, transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
             {
-                player.warning.Play(warningTime);
+                if (hit.collider.gameObject.TryGetComponent(out player))
+                {
+                    player.warning.Play(warningTime);
+                }
             }
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.forward * distance);
         }
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + transform.forward * distance);
     }
 
     public void LeverOn()

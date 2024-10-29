@@ -48,7 +48,7 @@ public class PlayerHang : MonoBehaviour
 
     private void CheckHang()
     {
-        Ray ray = new Ray(transform.position, transform.forward * distance);
+        Ray ray = new Ray(transform.position + Vector3.up * 0.2f, transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
         {
             if (hit.collider.gameObject != currentGameObject)
