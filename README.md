@@ -49,7 +49,7 @@
     버튼(Button): 'E키를 눌러 누르기' 텍스트 표시.
 - [완료] **플랫폼 발사기** (난이도 : ★★★★★)
     - 캐릭터가 플랫폼 위에 서 있을 때 특정 방향으로 힘을 가해 발사하는 시스템 구현특정 키를 누르거나 시간이 경과하면 ForceMode를 사용해 발사
-- [미완료] **발전된 AI** (난이도 : ★★★★★)
+- [완료] **발전된 AI** (난이도 : ★★★★★)
     - AI Navigation 시스템을 활용하여 맵에 다양한 구조물에 대한 계산 가중치를 설정
     - **Navigation 시스템 활용 예시**
         - 예1) 동적 베이크 `NavMeshSurface.BulidNavMesh()`
@@ -61,3 +61,19 @@
             - 구조물에 [NavMesh Modifier 컴포넌트](https://docs.unity3d.com/kr/2020.3/Manual/class-NavMeshModifier.html)를 추가하여 특정 Area Type을 할당합니다. 이를 통해 AI 캐릭터가 특정 구조물을 지나갈 때 더 높은 비용을 지불하게 됩니다.
         - 예3) 가중치에 따른 경로 변경 `NavMeshAgent.CalculatePath()`
             - AI 캐릭터가 이동 중 특정 구조물을 만나면, 가중치에 따라 경로를 변경하거나 피하는 로직을 구현합니다. 이를 통해 AI 캐릭터가 고유한 경로 선택 전략을 가지게 됩니다.
+
+## 트러블 슈팅
+
+1. Cinemachine 3인칭 기능 구현
+문제 : FreeLook 으로 3인칭 기능을 구현 했으나 부자연스럽게 캐릭터를 따라오고 덜덜거림 현상이 생김.
+해결 : 현 시점에서 우선 Camera의 rotation을 직접 변경하는 방식으로 수정함.
+
+2. 사다리에 매달리는 기능 구현
+문제 : 캐릭터가 사다리를 정면으로 바라보고 매달리기 시도할 때 바로 움직이지 않는 문제가 생김.
+해결 : 방향 키 입력시 지속적으로 값을 업데이트 해줘야 하는데, Move 함수를 한번만 호출하는 문제가 생겨서 Update 시에 moveDirection 값을 지속적으로 전달 하도록 함.
+
+3. NavMesh를 동적으로 Bake 하는 기능 구현
+문제 : 동적으로 NavMeshSurface를 BuildNavMesh 하도록 했지만, 반복되는 에러 발생으로 제대로 Bake 되지 않음.
+해결 : Unity Editor는 Bake하는데 권한에 대해서는 상관없지만 Runtime에 NavMeshSurface를 BuildNavMesh 하면 읽기/쓰기 권한이 없어서 Bake가 불가능 한데, 이 문제는 Mesh가 포함된 Model 에 Read/Write 권한을 부여 해주면, 동적으로 Bake 가능 하다.
+그리고 비슷 문제로 Scene의 Root 에서 권한이 없다는 에러가 발생하면 ProjectSettings > Player > Other Settings > Static Batching 을 체크 해제 해주면 해결 된다.
+
