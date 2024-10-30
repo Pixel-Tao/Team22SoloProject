@@ -57,9 +57,9 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log($"{angleToTarget}, {player.equip.attackAngle}");
             if (angleToTarget <= player.equip.attackAngle)
             {
-                if (obj.TryGetComponent(out DestructibleObject destructible))
+                if (obj.TryGetComponent(out IDamageable damageable))
                 {
-                    destructible.TakeDamage(player.equip.damage);
+                    damageable.TakeDamage(player.equip.damage);
                 }
             }
         }

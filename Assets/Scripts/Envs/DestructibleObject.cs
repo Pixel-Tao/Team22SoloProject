@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleObject : MonoBehaviour
+public class DestructibleObject : MonoBehaviour, IDamageable
 {
     [Range(1, 999)] public int health;
     public float flashTime;

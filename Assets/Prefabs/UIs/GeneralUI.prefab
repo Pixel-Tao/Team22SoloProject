@@ -1677,7 +1677,7 @@ MonoBehaviour:
   bar: {fileID: 1352941939174359145}
   currentValue: 0
   maxValue: 200
-  startValue: 50
+  startValue: 200
   passiveValue: 0
 --- !u!1 &6295990835974456366
 GameObject:
@@ -2179,7 +2179,7 @@ MonoBehaviour:
   bar: {fileID: 5429152518963511852}
   currentValue: 0
   maxValue: 200
-  startValue: 100
+  startValue: 200
   passiveValue: 10
 --- !u!1 &8420034510446692932
 GameObject:

@@ -3,32 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : ManagerSingleton<PlayerManager>
 {
-    private static PlayerManager instance;
-    public static PlayerManager Instance
-    {
-        get
-        {
-            Init();
-            return instance;
-        }
-    }
-
-    private static void Init()
-    {
-        if (instance == null)
-        {
-            PlayerManager manager = FindObjectOfType<PlayerManager>();
-            if (manager == null)
-            {
-                manager = new GameObject { name = "PlayerManager" }.AddComponent<PlayerManager>();
-                instance = manager;
-                DontDestroyOnLoad(manager.gameObject);
-            }
-        }
-    }
-
     public PlayerCondition Player { get; private set; }
     public void SetPlayer(PlayerCondition player)
     {
@@ -48,4 +24,5 @@ public class PlayerManager : MonoBehaviour
         Coin -= coin;
         CoinChangedEvent?.Invoke(Coin);
     }
+
 }
