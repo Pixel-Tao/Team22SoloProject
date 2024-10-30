@@ -66,14 +66,18 @@
 
 1. Cinemachine 3인칭 기능 구현
 문제 : FreeLook 으로 3인칭 기능을 구현 했으나 부자연스럽게 캐릭터를 따라오고 덜덜거림 현상이 생김.
+
 해결 : 현 시점에서 우선 Camera의 rotation을 직접 변경하는 방식으로 수정함.
 
-2. 사다리에 매달리는 기능 구현
+3. 사다리에 매달리는 기능 구현
 문제 : 캐릭터가 사다리를 정면으로 바라보고 매달리기 시도할 때 바로 움직이지 않는 문제가 생김.
+
 해결 : 방향 키 입력시 지속적으로 값을 업데이트 해줘야 하는데, Move 함수를 한번만 호출하는 문제가 생겨서 Update 시에 moveDirection 값을 지속적으로 전달 하도록 함.
 
-3. NavMesh를 동적으로 Bake 하는 기능 구현
+4. NavMesh를 동적으로 Bake 하는 기능 구현
 문제 : 동적으로 NavMeshSurface를 BuildNavMesh 하도록 했지만, 반복되는 에러 발생으로 제대로 Bake 되지 않음.
+
 해결 : Unity Editor는 Bake하는데 권한에 대해서는 상관없지만 Runtime에 NavMeshSurface를 BuildNavMesh 하면 읽기/쓰기 권한이 없어서 Bake가 불가능 한데, 이 문제는 Mesh가 포함된 Model 에 Read/Write 권한을 부여 해주면, 동적으로 Bake 가능 하다.
+
 그리고 비슷 문제로 Scene의 Root 에서 권한이 없다는 에러가 발생하면 ProjectSettings > Player > Other Settings > Static Batching 을 체크 해제 해주면 해결 된다.
 
