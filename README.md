@@ -80,7 +80,7 @@
 
 4. NavMesh를 동적으로 Bake 하는 기능 구현
 
-문제 : 동적으로 NavMeshSurface를 BuildNavMesh 하도록 했지만, 반복되는 에러 발생으로 제대로 Bake 되지 않음.
+문제 : 동적으로 NavMeshSurface를 BuildNavMesh 하도록 했지만, 반복되는 읽기/쓰기 에러 발생으로 제대로 Bake 되지 않음.
 
 해결 : Unity Editor는 Bake하는데 권한에 대해서는 상관없지만 Runtime에 NavMeshSurface를 BuildNavMesh 하면 읽기/쓰기 권한이 없어서 Bake가 불가능 한데, 이 문제는 Mesh가 포함된 Model 에 Read/Write 권한을 부여 해주면, 동적으로 Bake 가능 하다.
 
